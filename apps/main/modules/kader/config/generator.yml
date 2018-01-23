@@ -1,0 +1,33 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Kader
+    theme:            default
+    
+    list:
+        display: [nama, alamat, jenis_kader, wilayah, rt, rw, no_telp, _opsi]
+        filters: [id_wilayah, id_jenis_kader]
+        fields:
+            rt:
+                name: RT
+            rw:
+                name: RW
+            no_telp:
+                name: No. Telp
+            id_wilayah:
+                name: Wilayah
+            id_jenis_kader:
+                name: Jenis Kader
+        
+    edit:
+        fields:
+            id_wilayah:
+                name: Wilayah
+            id_jenis_kader:
+                name: Jenis Kader
+            rt:
+                name: RT
+            rw:
+                name: RW
+            no_telp:
+                name: No. Telp

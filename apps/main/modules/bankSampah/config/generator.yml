@@ -1,0 +1,23 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      BankSampah
+    theme:            default
+    
+    list:
+        display: [wilayah, nama, alamat, dasar_pendirian, _date, sk, ketua, jumlah_nasabah, _omset, _opsi]
+        filters: [id_wilayah, tahun_pendirian]
+        fields:
+            date:
+                name: Tanggal Pendirian
+            id_wilayah:
+                name: Wilayah
+            tahun_pendirian:
+                name: Tahun Pendirian
+        
+    edit:
+        title: Form Pengisian Data Bank Sampah
+        display: [id_wilayah, nama, alamat, dasar_pendirian, _tanggal_pendirian, _bulan_pendirian, tahun_pendirian, sk, ketua, jumlah_nasabah, omset]
+        fields:
+            id_wilayah:
+                name: Wilayah

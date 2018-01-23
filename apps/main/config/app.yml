@@ -1,0 +1,5 @@
+# default values
+all:
+    sf_guard_plugin:
+        success_signin_url: home
+        success_signout_url: home

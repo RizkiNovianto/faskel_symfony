@@ -1,0 +1,10 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      Wilayah
+    theme:            default
+    
+    list:
+        display: [wilayah, kecamatan, kelurahan, _opsi]
+    edit:
+        display: [_wilayah, kecamatan, kelurahan]

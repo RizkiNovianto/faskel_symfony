@@ -1,0 +1,313 @@
+---
+propel: 
+  _attributes: 
+    package: lib.model
+  bank_sampah: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    id_wilayah: 
+      type: INTEGER
+      required: true
+      foreignTable: wilayah
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    nama: 
+      type: VARCHAR
+      size: 50
+    alamat: 
+      type: VARCHAR
+      size: 50
+    dasar_pendirian: 
+      type: VARCHAR
+      size: 25
+    tanggal_pendirian: 
+      type: INTEGER
+    bulan_pendirian: 
+      type: INTEGER
+    tahun_pendirian: 
+      type: INTEGER
+    sk: 
+      type: VARCHAR
+      size: 20
+    ketua: 
+      type: VARCHAR
+      size: 100
+    jumlah_nasabah: 
+      type: INTEGER
+    omset: 
+      type: INTEGER
+    _indexes: 
+      FK_bank_sampah_wilayah: 
+        - id_wilayah
+  ipal_komunal: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    id_wilayah: 
+      type: INTEGER
+      required: true
+      foreignTable: wilayah
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    nama: 
+      type: VARCHAR
+      size: 50
+    alamat: 
+      type: VARCHAR
+      size: 50
+    dasar_pembangunan: 
+      type: VARCHAR
+      size: 25
+    tanggal_pembangunan: 
+      type: INTEGER
+    bulan_pembangunan: 
+      type: INTEGER
+    tahun_pembangunan: 
+      type: INTEGER
+    pengelola: 
+      type: VARCHAR
+      size: 50
+    kondisi: 
+      type: VARCHAR
+      size: 25
+    _indexes: 
+      FK_ipal_komunal_wilayah: 
+        - id_wilayah
+  jenis_kader: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    jabatan: 
+      type: VARCHAR
+      size: 50
+      required: true
+  kader: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    id_wilayah: 
+      type: INTEGER
+      required: true
+      foreignTable: wilayah
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    id_jenis_kader: 
+      type: INTEGER
+      foreignTable: jenis_kader
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: CASCADE
+    nama: 
+      type: VARCHAR
+      size: 50
+      required: true
+    alamat: 
+      type: VARCHAR
+      size: 50
+    RT: 
+      type: VARCHAR
+      size: 10
+    RW: 
+      type: VARCHAR
+      size: 10
+    no_telp: 
+      type: VARCHAR
+      size: 13
+    _indexes: 
+      FK_kader_wilayah: 
+        - id_wilayah
+      FK_kader_jenis_kader: 
+        - id_jenis_kader
+  sf_guard_group: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    name: 
+      type: VARCHAR
+      size: 255
+      required: true
+    description: 
+      type: LONGVARCHAR
+    _uniques: 
+      sf_guard_group_name_unique: 
+        - name
+  sf_guard_group_permission: 
+    group_id: 
+      type: INTEGER
+      required: true
+      primaryKey: true
+      foreignTable: sf_guard_group
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: RESTRICT
+    permission_id: 
+      type: INTEGER
+      required: true
+      primaryKey: true
+      foreignTable: sf_guard_permission
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: RESTRICT
+    _indexes: 
+      sf_guard_group_permission_FI_2: 
+        - permission_id
+  sf_guard_permission: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    name: 
+      type: VARCHAR
+      size: 255
+      required: true
+    description: 
+      type: LONGVARCHAR
+    _uniques: 
+      sf_guard_permission_name_unique: 
+        - name
+  sf_guard_remember_key: 
+    user_id: 
+      type: INTEGER
+      required: true
+      primaryKey: true
+      foreignTable: sf_guard_user
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: RESTRICT
+    remember_key: 
+      type: VARCHAR
+      size: 32
+    ip_address: 
+      type: VARCHAR
+      size: 50
+      required: true
+      primaryKey: true
+    created_at: 
+      type: TIMESTAMP
+  sf_guard_user: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    username: 
+      type: VARCHAR
+      size: 128
+      required: true
+    algorithm: 
+      type: VARCHAR
+      size: 128
+      required: true
+      default: sha1
+    salt: 
+      type: VARCHAR
+      size: 128
+      required: true
+    password: 
+      type: VARCHAR
+      size: 128
+      required: true
+    created_at: 
+      type: TIMESTAMP
+    last_login: 
+      type: TIMESTAMP
+    is_active: 
+      type: INTEGER
+      required: true
+      default: 1
+    is_super_admin: 
+      type: INTEGER
+      required: true
+      default: 0
+    _uniques: 
+      sf_guard_user_username_unique: 
+        - username
+  sf_guard_user_group: 
+    user_id: 
+      type: INTEGER
+      required: true
+      primaryKey: true
+      foreignTable: sf_guard_user
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: RESTRICT
+    group_id: 
+      type: INTEGER
+      required: true
+      primaryKey: true
+      foreignTable: sf_guard_group
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: RESTRICT
+    _indexes: 
+      sf_guard_user_group_FI_2: 
+        - group_id
+  sf_guard_user_permission: 
+    user_id: 
+      type: INTEGER
+      required: true
+      primaryKey: true
+      foreignTable: sf_guard_user
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: RESTRICT
+    permission_id: 
+      type: INTEGER
+      required: true
+      primaryKey: true
+      foreignTable: sf_guard_permission
+      foreignReference: id
+      onDelete: CASCADE
+      onUpdate: RESTRICT
+    _indexes: 
+      sf_guard_user_permission_FI_2: 
+        - permission_id
+  wilayah: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    wilayah: 
+      type: VARCHAR
+      size: 20
+      required: true
+    kecamatan: 
+      type: VARCHAR
+      size: 25
+      required: true
+    kelurahan: 
+      type: VARCHAR
+      size: 25
+      required: true

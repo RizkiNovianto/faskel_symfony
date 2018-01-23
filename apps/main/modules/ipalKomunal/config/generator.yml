@@ -1,0 +1,22 @@
+generator:
+  class:              sfPropelAdminGenerator
+  param:
+    model_class:      IpalKomunal
+    theme:            default
+    
+    list:
+        display: [wilayah, nama, alamat, dasar_pembangunan, _date, pengelola, kondisi, _opsi]
+        filters: [id_wilayah, tahun_pembangunan]
+        fields:
+            date:
+                name: Tanggal
+            id_wilayah:
+                name: Wilayah
+            tahun_pembangunan:
+                name: Tahun Pembangunan
+        
+    edit:
+        display: [id_wilayah, nama, alamat, dasar_pembangunan, _tanggal_pembangunan, _bulan_pembangunan, tahun_pembangunan, pengelola, kondisi]
+        fields:
+            id_wilayah:
+                name: Wilayah
