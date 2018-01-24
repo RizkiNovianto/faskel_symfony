@@ -282,6 +282,12 @@
   border-right: 4px solid #66f !important;
 }
 
+#sf_admin_container .sf_admin_action_excel
+{
+  background: url(../images/excel_icon_small.png) no-repeat 3px 2px;
+  border-right: 4px solid #66f !important;
+}
+
 #sf_admin_container .sf_admin_default_action
 {
   background-color: #fc6 !important;
