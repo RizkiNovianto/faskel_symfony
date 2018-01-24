@@ -20,6 +20,8 @@ generator:
                 name: Jenis Kader
         
     edit:
+        actions: 
+            _edit: ~            
         fields:
             id_wilayah:
                 name: Wilayah

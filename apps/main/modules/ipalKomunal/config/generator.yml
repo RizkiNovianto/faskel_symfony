@@ -17,6 +17,8 @@ generator:
         
     edit:
         display: [id_wilayah, nama, alamat, dasar_pembangunan, _tanggal_pembangunan, _bulan_pembangunan, tahun_pembangunan, pengelola, kondisi]
+        actions: 
+            _edit: ~
         fields:
             id_wilayah:
                 name: Wilayah

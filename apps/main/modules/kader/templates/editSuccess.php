@@ -19,7 +19,7 @@
                         </h1>
                         <ol class="breadcrumb">
                             <li>
-                                <i class="fa fa-home"></i>  <a href="index.html">Home</a>
+                                <i class="fa fa-home"></i>  <a href="index.html">Beranda</a>
                             </li>
                             <li>
                                 <a href="/faskel_symfony/web/main_dev.php/ipalKomunal">Kader</a>

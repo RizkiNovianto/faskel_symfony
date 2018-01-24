@@ -103,15 +103,5 @@
 </form>
 
 <!-------------------------------------------------------------------------------------------------------------->
-<?php if($sf_user->getGuardUser()->getIsSuperAdmin() == 1) { ?>
-<ul class="sf_admin_actions">
-      <li class="float-left"><?php if ($sf_guard_user->getId()): ?>
-<?php echo button_to(__('delete'), 'sfGuardUser/delete?id='.$sf_guard_user->getId(), array (
-  'post' => true,
-  'confirm' => __('Are you sure?'),
-  'class' => 'sf_admin_action_delete',
-)) ?><?php endif; ?>
-</li>
-  </ul>
-<?php } ?>
+
 <!-------------------------------------------------------------------------------------------------------------->

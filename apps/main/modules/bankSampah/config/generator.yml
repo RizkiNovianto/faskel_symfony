@@ -18,6 +18,8 @@ generator:
     edit:
         title: Form Pengisian Data Bank Sampah
         display: [id_wilayah, nama, alamat, dasar_pendirian, _tanggal_pendirian, _bulan_pendirian, tahun_pendirian, sk, ketua, jumlah_nasabah, omset]
+        actions: 
+            _edit: ~
         fields:
             id_wilayah:
                 name: Wilayah

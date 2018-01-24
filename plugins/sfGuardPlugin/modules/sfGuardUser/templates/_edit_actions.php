@@ -5,21 +5,31 @@
 <ul class="sf_admin_actions">
 
 <?php if($sf_user->getGuardUser()->getIsSuperAdmin() == 1) { ?>
-  <li><?php echo button_to(__('list'), 'sfGuardUser/list?id='.$sf_guard_user->getId(), array (
+  <li><?php echo button_to(__('Lihat Daftar'), 'sfGuardUser/list?id='.$sf_guard_user->getId(), array (
   'class' => 'sf_admin_action_list',
 )) ?></li>
 <?php } ?>
 
-  <li><?php echo submit_tag(__('save'), array (
+  <li><?php echo submit_tag(__('Simpan'), array (
   'name' => 'save',
   'class' => 'sf_admin_action_save',
 )) ?></li>
 
 <?php if($sf_user->getGuardUser()->getIsSuperAdmin() == 1) { ?>
-  <li><?php echo submit_tag(__('save and add'), array (
-  'name' => 'save_and_add',
-  'class' => 'sf_admin_action_save_and_add',
+  <li><?php echo submit_tag(__('Simpan dan Kembali'), array (
+  'name' => 'save_and_list',
+  'class' => 'sf_admin_action_save_and_list',
 )) ?></li>
+<?php } ?>
+
+<?php if($sf_user->getGuardUser()->getIsSuperAdmin() == 1) { ?>
+      <li class="float-left"><?php if ($sf_guard_user->getId()): ?>
+<?php echo button_to(__('Hapus'), 'sfGuardUser/delete?id='.$sf_guard_user->getId(), array (
+  'post' => true,
+  'confirm' => __('Hapus Data?'),
+  'class' => 'sf_admin_action_delete',
+)) ?><?php endif; ?>
+</li>
 <?php } ?>
 
 </ul>

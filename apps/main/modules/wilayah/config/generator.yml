@@ -8,3 +8,5 @@ generator:
         display: [wilayah, kecamatan, kelurahan, _opsi]
     edit:
         display: [_wilayah, kecamatan, kelurahan]
+        actions: 
+            _edit: ~        
