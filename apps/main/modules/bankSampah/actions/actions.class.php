@@ -33,11 +33,6 @@ class bankSampahActions extends autobankSampahActions
     header("Content-Disposition: attachment; filename=\"$filename\"");
     header("Content-Type: application/vnd.ms-excel");
     
-/*    $arrayRow = array('No.' => 'No.', 'Wilayah' => 'Wilayah', 'Nama' => 'Nama', 'Alamat' => 'Alamat'
-        , 'Dasar Pendirian' => 'Dasar Pendirian', 'Tanggal Pendirian'=> 'Tanggal Pendirian'
-        , 'SK' => 'Sk', 'Jumlah Nasabah' => 'Jumlah Nasabah', 'Omset' => 'Omset');
-  */
-    
     $arrayRow = array();
     
     $counter = 1;
@@ -66,7 +61,7 @@ class bankSampahActions extends autobankSampahActions
             'Nama' => $baris->getNama(), 
             'Alamat' => $baris->getAlamat(),
             'Dasar Pendirian' => $baris->getDasarPendirian(),
-            'Tanggal Pendifian' => $baris->getTanggalPendirian().' '.$blnText.' '.$baris->getTahunPendirian(),
+            'Tanggal Pendirian' => $baris->getTanggalPendirian().' '.$blnText.' '.$baris->getTahunPendirian(),
             'SK' => $baris->getSk(), 
             'Jumlah Nasabah' => $baris->getJumlahNasabah(),
             'Omset' => $baris->getOmset())

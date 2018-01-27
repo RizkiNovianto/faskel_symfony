@@ -6,7 +6,7 @@
     <li><?php echo button_to(__('Simpan Excel'), 'bankSampah/ExcelGenerate', array (
   'class' => 'sf_admin_action_excel',
 )) ?></li>
-      <li><?php echo button_to(__('Tambah Data'), 'bankSampah/new', array (
+      <li><?php echo button_to(__('Tambah Data'), 'bankSampah/create', array (
   'class' => 'sf_admin_action_create',
 )) ?></li>
   </ul>

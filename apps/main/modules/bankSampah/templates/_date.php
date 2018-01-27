@@ -18,4 +18,6 @@ else if ($bln == 10) $blnText = 'Oktober';
 else if ($bln == 11) $blnText = 'November';
 else if ($bln == 12) $blnText = 'Desember';
 
+if ($tggl < 1) $tggl ='';
+if ($thn < 1) $thn = '';
 echo $tggl.' '.$blnText.' '.$thn; ?>
