@@ -138,6 +138,38 @@ propel:
         - id_wilayah
       FK_kader_jenis_kader: 
         - id_jenis_kader
+  pengguna: 
+    _attributes: 
+      idMethod: native
+    id: 
+      type: INTEGER
+      required: true
+      autoIncrement: true
+      primaryKey: true
+    id_wilayah: 
+      type: INTEGER
+      foreignTable: wilayah
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    id_sfGuardUser: 
+      type: INTEGER
+      required: true
+      foreignTable: sf_guard_user
+      foreignReference: id
+      onDelete: RESTRICT
+      onUpdate: RESTRICT
+    nama: 
+      type: VARCHAR
+      size: 50
+    keterangan: 
+      type: VARCHAR
+      size: 255
+    _indexes: 
+      FK_penggunaWilayah: 
+        - id_wilayah
+      FK_penggunaSfGuardUser: 
+        - id_sfGuardUser
   sf_guard_group: 
     _attributes: 
       idMethod: native

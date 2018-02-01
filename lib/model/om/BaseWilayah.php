@@ -42,6 +42,12 @@ abstract class BaseWilayah extends BaseObject  implements Persistent {
 	protected $lastKaderCriteria = null;
 
 	
+	protected $collPenggunas;
+
+	
+	protected $lastPenggunaCriteria = null;
+
+	
 	protected $alreadyInSave = false;
 
 	
@@ -240,6 +246,14 @@ abstract class BaseWilayah extends BaseObject  implements Persistent {
 				}
 			}
 
+			if ($this->collPenggunas !== null) {
+				foreach($this->collPenggunas as $referrerFK) {
+					if (!$referrerFK->isDeleted()) {
+						$affectedRows += $referrerFK->save($con);
+					}
+				}
+			}
+
 			$this->alreadyInSave = false;
 		}
 		return $affectedRows;
@@ -299,6 +313,14 @@ abstract class BaseWilayah extends BaseObject  implements Persistent {
 
 				if ($this->collKaders !== null) {
 					foreach($this->collKaders as $referrerFK) {
+						if (!$referrerFK->validate($columns)) {
+							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
+						}
+					}
+				}
+
+				if ($this->collPenggunas !== null) {
+					foreach($this->collPenggunas as $referrerFK) {
 						if (!$referrerFK->validate($columns)) {
 							$failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
 						}
@@ -448,6 +470,10 @@ abstract class BaseWilayah extends BaseObject  implements Persistent {
 
 			foreach($this->getKaders() as $relObj) {
 				$copyObj->addKader($relObj->copy($deepCopy));
+			}
+
+			foreach($this->getPenggunas() as $relObj) {
+				$copyObj->addPengguna($relObj->copy($deepCopy));
 			}
 
 		} 
@@ -718,6 +744,111 @@ abstract class BaseWilayah extends BaseObject  implements Persistent {
 		$this->lastKaderCriteria = $criteria;
 
 		return $this->collKaders;
+	}
+
+	
+	public function initPenggunas()
+	{
+		if ($this->collPenggunas === null) {
+			$this->collPenggunas = array();
+		}
+	}
+
+	
+	public function getPenggunas($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BasePenggunaPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collPenggunas === null) {
+			if ($this->isNew()) {
+			   $this->collPenggunas = array();
+			} else {
+
+				$criteria->add(PenggunaPeer::ID_WILAYAH, $this->getId());
+
+				PenggunaPeer::addSelectColumns($criteria);
+				$this->collPenggunas = PenggunaPeer::doSelect($criteria, $con);
+			}
+		} else {
+						if (!$this->isNew()) {
+												
+
+				$criteria->add(PenggunaPeer::ID_WILAYAH, $this->getId());
+
+				PenggunaPeer::addSelectColumns($criteria);
+				if (!isset($this->lastPenggunaCriteria) || !$this->lastPenggunaCriteria->equals($criteria)) {
+					$this->collPenggunas = PenggunaPeer::doSelect($criteria, $con);
+				}
+			}
+		}
+		$this->lastPenggunaCriteria = $criteria;
+		return $this->collPenggunas;
+	}
+
+	
+	public function countPenggunas($criteria = null, $distinct = false, $con = null)
+	{
+				include_once 'lib/model/om/BasePenggunaPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		$criteria->add(PenggunaPeer::ID_WILAYAH, $this->getId());
+
+		return PenggunaPeer::doCount($criteria, $distinct, $con);
+	}
+
+	
+	public function addPengguna(Pengguna $l)
+	{
+		$this->collPenggunas[] = $l;
+		$l->setWilayah($this);
+	}
+
+
+	
+	public function getPenggunasJoinSfGuardUser($criteria = null, $con = null)
+	{
+				include_once 'lib/model/om/BasePenggunaPeer.php';
+		if ($criteria === null) {
+			$criteria = new Criteria();
+		}
+		elseif ($criteria instanceof Criteria)
+		{
+			$criteria = clone $criteria;
+		}
+
+		if ($this->collPenggunas === null) {
+			if ($this->isNew()) {
+				$this->collPenggunas = array();
+			} else {
+
+				$criteria->add(PenggunaPeer::ID_WILAYAH, $this->getId());
+
+				$this->collPenggunas = PenggunaPeer::doSelectJoinSfGuardUser($criteria, $con);
+			}
+		} else {
+									
+			$criteria->add(PenggunaPeer::ID_WILAYAH, $this->getId());
+
+			if (!isset($this->lastPenggunaCriteria) || !$this->lastPenggunaCriteria->equals($criteria)) {
+				$this->collPenggunas = PenggunaPeer::doSelectJoinSfGuardUser($criteria, $con);
+			}
+		}
+		$this->lastPenggunaCriteria = $criteria;
+
+		return $this->collPenggunas;
 	}
 
 } 

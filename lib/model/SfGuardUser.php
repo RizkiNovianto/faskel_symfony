@@ -9,4 +9,7 @@
  */ 
 class SfGuardUser extends BaseSfGuardUser
 {
+		public function  __toString() {
+    return $this->getUsername();
+  }
 }

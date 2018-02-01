@@ -21,4 +21,10 @@
   'class' => 'sf_admin_action_delete',
 )) ?><?php endif; ?>
 </li>
+      <li class="float-left"><?php if ($wilayah->getId()): ?>
+<?php echo link_to(image_tag('/images/delete_btn_custom.png', array('alt' => __('delete'), 'title' => __('Hapus Data'))), 'wilayah/delete?id='.$wilayah->getId(), array (
+  'post' => true,
+  'confirm' => __('Hapus Data Ini ?\n('.$wilayah->getWilayah().' - '.$wilayah->getKecamatan().' - '.$wilayah->getKelurahan().')'),
+)) ?><?php endif; ?>
+</li>
 </ul>

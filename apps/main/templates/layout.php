@@ -66,6 +66,9 @@
                             <?php echo link_to('<i class="fa fa-fw fa-user"></i> Daftar User', 'sfGuardUser')?>                       
                         </li>
                         <?php } ?>
+                        <li>
+                            <?php echo link_to('<i class="fa fa-fw fa-user"></i> Profil', 'pengguna/detail?userId='.$sf_user->getGuardUser()->getId()) ?>
+                        </li>
                         
                         <li class="divider"></li>
                         
@@ -82,6 +85,9 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav" style="position:fixed;">
+                    <li>
+                        <?php echo link_to('<i class="fa fa-fw fa-user"></i> Pengguna (TEMP)', 'pengguna')?>                       
+                    </li>
                     <li>
                         <?php echo link_to('<i class="fa fa-fw fa-home"></i> Beranda', 'home')?>                       
                     </li>
